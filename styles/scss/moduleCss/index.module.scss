@@ -1,0 +1,19 @@
+.main {
+    position: relative;
+    background-image: url(../../../src/img/kyotoBg.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.container {
+    z-index: 1000;
+}
+
+.stage {
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background-color: black;
+    opacity: 0.6;
+}
