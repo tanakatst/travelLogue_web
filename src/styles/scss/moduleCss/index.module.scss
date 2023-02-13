@@ -1,0 +1,31 @@
+.main {
+    position: relative;
+    background-image: url(https://cdn.pixabay.com/photo/2016/11/22/22/21/adventure-1850912_1280.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.main::before {
+    /* 透過した黒を上から重ねるイメージ */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* 自由に位置指定 */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: ' ';
+}
+
+.container {
+    z-index: 1000;
+}
+
+.stage {
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background-color: black;
+    opacity: 0.6;
+}
