@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 declare module '@mui/material/styles'{
     interface Palette {
         bgColor:{
+            secondaryWhite: BackgroundColor | undefined;
             blue: string,
             white: string,
             charcoal: string,
