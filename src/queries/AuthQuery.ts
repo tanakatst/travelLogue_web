@@ -9,14 +9,15 @@ const useUser = ()=>{
     return useQuery('user', ()=>api.getUser())
 }
 const useLogin =()=>{
-    const router = useRouter();
+    const router = useRouter()
     return useMutation(api.login,{
         onSuccess:(res)=>{
             router.push('/home')
-            console.log(res)
+            return res
         },
         onError:(error)=>{
-            console.log(error)
+            toast.error('エラーが発生しました。')
+            // console.log(error)
         }
     })
 }
