@@ -2,8 +2,9 @@ import axios from "axios";
 
 
 
+
 const http = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_APP_END_POINT,
+    baseURL: 'http://localhost:8888',
     headers:{
         'X-Requested-with':'XMLHttpRequest',
     },
