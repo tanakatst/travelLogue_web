@@ -2,33 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import { useRouter } from 'next/router';
 import { useLogin } from '../../../queries/AuthQuery';
 import Button from '@mui/material/Button';
-import {CssVarsProvider, ModalClose, ModalDialog} from '@mui/joy';
-import {Sheet} from '@mui/joy'
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Link from '@mui/joy/Link'
-import { deepmerge } from '@mui/utils';
-import { muiTheme } from '../../../styles/mui/JoytMaterialMixed';
-import { joyTheme } from '../../../styles/mui/JoytMaterialMixed';
-import Dialog from '@mui/material/Dialog'
-import { Box, DialogContent, DialogTitle, Slide } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
-import { Height } from '@mui/icons-material';
-
-
-
-  // slide animation
-  const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-      children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-  ) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const LoginModal= ()=> {
   const [open, setOpen] = React.useState(false);
@@ -40,8 +19,13 @@ const LoginModal= ()=> {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+
   const router = useRouter();
     const login = useLogin();
+
+
     // stateの変更機能
 
     const [email, setEmail] = useState('');
@@ -58,28 +42,47 @@ const LoginModal= ()=> {
         login.mutate({email, password})
         setOpen(false);
     }
+
   return (
-    <>
-      <Button variant='contained' sx={{backgroundColor: 'bgColor.blue'}} onClick={handleClickOpen}>
-        ログイン
-      </Button>
-      <Dialog 
-      open={open} 
-      onClose={handleClose} 
-      keepMounted
-      TransitionComponent={Transition}
-      sx={{backgroundColor:'transparent', borderRadius:20}}
-      >
-        <Box sx={{backgroundColor:'bgColor.blue', height:'70vh', padding:'5%'}}>
-          <DialogTitle sx={{fontWeight:'bold', textAlign:'center', color:'textColor.white'}}>
-            ログイン
-          </DialogTitle>
-          <DialogContent sx={{color: 'textColor.white'}}>
+    <div>
+            <Button   variant='contained' sx={{backgroundColor:'bgColor.blue'}} onClick={handleClickOpen}>
+                ログイン
+            </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>ログイン</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
             メールアドレスとパスワードを入力してください
-          </DialogContent>
-        </Box>
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            value={email}
+            onChange={changeEmail}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="password"
+            type="password"
+            fullWidth
+            variant="standard"
+            value={password}
+            onChange={changePassword}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>キャンセル</Button>
+          <Button onClick={handleLogin}>ログイン</Button>
+        </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 }
 

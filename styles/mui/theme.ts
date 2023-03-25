@@ -46,7 +46,7 @@ const theme = createTheme({
         },
         textColor:{
             black:'#585A5A',
-            white: '#EFECEC',
+            white: '#FFFFFF',
             fullBlack: '#EFECEC'
         }
     },
