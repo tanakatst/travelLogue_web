@@ -48,7 +48,7 @@ export const ChangeNav =()=> {
             },
             })}
         >
-            <TabList variant="plain" sx={{ '--List-decorator-size': '28px' }}>
+            <TabList  sx={{ '--List-decorator-size': '28px' }}>
             <Tab
                 orientation="vertical"
                 {...(index === 0 && { variant: 'soft', color: colors[0] })}

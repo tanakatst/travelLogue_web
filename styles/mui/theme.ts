@@ -6,11 +6,13 @@ declare module "@mui/material/styles" {
   interface Palette {
     bgColor: {
       gray: string;
+      primaryWhite: string;
       secondaryWhite: string;
       blue: string;
       white: string;
       charcoal: string;
       orange: string;
+      bladBlue:string;
       bladOrange: string;
     };
     textColor: {
@@ -27,6 +29,7 @@ declare module "@mui/material/styles" {
       secondaryWhite: string;
       charcoal: string;
       orange: string;
+      bladBlue:string;
       bladOrange: string;
     };
     textColor?: {
@@ -47,6 +50,7 @@ const theme = createTheme({
       secondaryWhite: "#EDEDED",
       charcoal: "#F4EADE",
       orange: "#ED8C72",
+      bladBlue:"#1C2B80",
       bladOrange: "#E45934",
     },
     textColor: {
