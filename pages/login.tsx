@@ -17,12 +17,13 @@ import { useRouter } from "next/router";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { login, register } from "../src/api/AuthApi";
 import { FormHelperText } from "@mui/joy";
-import { Google } from "@mui/icons-material";
+import { Google, Password } from "@mui/icons-material";
 import { useTheme } from "@mui/material";
 import theme from "../styles/mui/theme";
 import { joyTheme, muiTheme } from "../src/styles/mui/JoytMaterialMixed";
 import { deepmerge } from "@mui/utils";
 import { orange, blue } from "@mui/material/colors";
+import { useLogin } from "../src/queries/AuthQuery";
 
 interface FormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -106,7 +107,8 @@ const validationRules = {
 export default function Login() {
   // mui のテーマ
   const materialTheme = useTheme();
-
+  // loginMutation
+  const loginMutation = useLogin();
   // 登録後、ページを飛ばす為のルーター
   const router = useRouter();
   // 新規登録機能
@@ -118,11 +120,14 @@ export default function Login() {
   });
 
   const onSubmit: SubmitHandler<LoginParams> = (data) => {
-    // call Login API
-    const response = login({ email: data.email, password: data.password });
-
+    // call LoginMutation
+    const params = { email: data.email, password: data.password };
+    loginMutation.mutate(params);
   };
 
+  {
+    loginMutation.isSuccess && router.push("/home");
+  }
   return (
     <CssVarsProvider
       defaultMode="dark"

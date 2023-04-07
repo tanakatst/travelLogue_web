@@ -9,16 +9,27 @@ const useUser = ()=>{
     return useQuery('user', ()=>api.getUser())
 }
 const useLogin =()=>{
-    const router = useRouter()
     return useMutation(api.login,{
         onSuccess:(res)=>{
-            router.push('/home')
             return res
         },
         onError:(error)=>{
             toast.error('エラーが発生しました。')
             // console.log(error)
         }
+    })
+}
+
+const useRegister = () =>{
+    return useMutation(api.register, {
+        onSuccess:(res) => {
+            return res
+        },
+        onError:(res)=>{
+            toast.error('エラーが発生しました')
+            console.log(res)
+        }
+
     })
 }
 
@@ -43,5 +54,6 @@ const useLogout = ()=>{
 export {
     useUser,
     useLogin,
-    useLogout
+    useLogout,
+    useRegister
 }
