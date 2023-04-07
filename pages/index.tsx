@@ -9,6 +9,7 @@ import Example from "../src/components/pagesComponent/index/example";
 import { Box, Button, Container, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
+
 const Home: NextPage = () => {
   const router = useRouter();
 
