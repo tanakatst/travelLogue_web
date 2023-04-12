@@ -15,9 +15,15 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { Button } from "@mui/joy";
 import { colors, useTheme } from "@mui/material";
-import { AccountCircle, AirplaneTicket, Home, House } from "@mui/icons-material";
+import {
+  AccountCircle,
+  AirplaneTicket,
+  Home,
+  House,
+} from "@mui/icons-material";
 import { muiTheme } from "../../styles/mui/JoytMaterialMixed";
-import Profile from '../../../pages/profile';
+import Profile from "../../../pages/profile";
+import NavbarButton from "./NavbarLIst/NavbarButton";
 
 export default function Navigation() {
   const materialTheme = useTheme().palette;
@@ -39,56 +45,15 @@ export default function Navigation() {
           aria-labelledby="nav-list-browse"
           sx={{
             "--List-gap": "7px",
-            "& .JoyListItemButton-root": { py: "11px", px:'15px' },
+            "& .JoyListItemButton-root": { py: "11px", px: "15px" },
           }}
         >
-          <ListItem>
-            <ListItemButton
-              sx={{
-                color:materialTheme.textColor.white,
-                backgroundColor: materialTheme.bgColor.blue,
-                borderRadius: 8,
-                ':hover':{backgroundColor:materialTheme.bgColor.bladBlue, color:materialTheme.textColor.white}
-              }}
-            >
-              <ListItemDecorator sx={{color: materialTheme.textColor.white,':hover':{backgroundColor:materialTheme.bgColor.blue, color:materialTheme.textColor.white}}}>
-                <Home />
-              </ListItemDecorator>
-              <ListItemContent sx={{fontWeight:'bold',pl:1}}>Home</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton
-              sx={{
-                color:materialTheme.textColor.black,
-                backgroundColor: materialTheme.bgColor.white,
-                borderRadius: 8,
-                ':hover':{backgroundColor:materialTheme.bgColor.bladBlue, color:materialTheme.textColor.white}
-              }}
-            >
-              <ListItemDecorator sx={{color: materialTheme.textColor.black,':hover':{backgroundColor:materialTheme.bgColor.blue, color:materialTheme.textColor.white}}}>
-                <AirplaneTicket />
-              </ListItemDecorator>
-              <ListItemContent sx={{fontWeight:'bold',pl:1}}>Plan</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton
-              sx={{
-                color:materialTheme.textColor.black,
-                backgroundColor: materialTheme.bgColor.white,
-                borderRadius: 8,
-                ':hover':{backgroundColor:materialTheme.bgColor.bladBlue, color:materialTheme.textColor.white}
-              }}
-            >
-              <ListItemDecorator sx={{color: materialTheme.textColor.black,':hover':{backgroundColor:materialTheme.bgColor.blue, color:materialTheme.textColor.white}}}>
-                <AccountCircle />
-              </ListItemDecorator>
-              <ListItemContent sx={{fontWeight:'bold',pl:1}}>Profile</ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          <NavbarButton name="Home" icon={<Home />} isSelected={true}/>
+          <NavbarButton name='Plan' icon={<AirplaneTicket />} isSelected={false}/>
+          <NavbarButton name="Profile" icon={<AccountCircle />} isSelected={false} />
         </List>
       </ListItem>
+   
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
           Tags

@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-
+import { ThemeOptions } from "@mui/material/styles";
 // mui theme typescript
 declare module "@mui/material/styles" {
   interface Palette {
@@ -40,7 +40,7 @@ declare module "@mui/material/styles" {
   }
 }
 
-const theme = createTheme({
+export const theme = createTheme({
   // TODO:テーマ設定を行います
   palette: {
     bgColor: {
@@ -58,6 +58,31 @@ const theme = createTheme({
       white: "#EFECEC",
       fullBlack: "#000",
     },
+    
+    // mode: 'dark',
+    // primary: {
+    //   main: '#134577',
+    // },
+    // secondary: {
+    //   main: '#f59700',
+    //   contrastText: 'rgba(255,255,255,0.87)',
+    // },
+    // warning: {
+    //   main: '#ed9302',
+    // },
+    // info: {
+    //   main: '#02b2d1',
+    // },
+    // text: {
+    //   primary: '#ece9e9',
+    // },
+    // error: {
+    //   main: '#ff5f58',
+    // },
+    // background: {
+    //   paper: '#2d2d2d',
+    // },
+    
   },
   typography: {
     fontFamily: [
@@ -75,5 +100,14 @@ const theme = createTheme({
     ].join(","),
   },
 });
+
+
+// import { ThemeOptions } from '@mui/material/styles';
+
+const themeOptions: ThemeOptions = {
+  palette: {
+    
+  },
+};
 
 export default theme;
