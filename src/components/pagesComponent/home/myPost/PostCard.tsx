@@ -1,127 +1,117 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
-import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
-import Favorite from '@mui/icons-material/Favorite';
-import { Button, CssVarsProvider, Menu, MenuItem } from '@mui/joy';
-import { deepmerge } from '@mui/utils';
-import { joyTheme, muiTheme } from '../../../../styles/mui/JoytMaterialMixed';
-import { Post } from '../../../../types/Post';
-import DeleteModal from '../DeleteModal';
-import EditModal from '../updatePostModal';
-import MenuIcon from '@mui/icons-material/Menu';
+import React from "react";
+import {
+  Avatar,
+  Box,
+  Grid,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import {
+  Card,
+  CardOverflow,
+  Button as JoyButton,
+  Typography as JoyTypography,
+  IconButton as JoyIconButton,
+} from "@mui/joy";
+import { Place, Height } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
+const PostCard = () => {
+  const imageURL =
+    "https://img.freepik.com/free-photo/yasaka-pagoda-and-sannen-zaka-street-in-kyoto-japan_335224-41.jpg";
+  ("");
 
-export const PostCard = ({id, title,prefecture,content,time,image}:Post) =>{
-    const stringTime = time.toString()
-    const substrTime = stringTime.substring(0, stringTime.indexOf('T'))
-    const showTime = substrTime.replace(/-/g, "/",)
+  const [hovered, setHovered] = React.useState(false);
+  const theme = useTheme().palette
+  const handleMouseOver = () => {
+    setHovered(true);
+  };
 
-
-
-    // 編集削除メニュー
-    const [anchorEl, setAnchorEl] = React.useState<EventTarget & HTMLAnchorElement | null>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        // state定義の部分に型を追加する。
-      setAnchorEl(e.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-
+  const handleMouseOut = () => {
+    setHovered(false);
+  };
   return (
-        <CssVarsProvider theme={deepmerge(joyTheme, muiTheme)}>
-            <Card variant="outlined" sx={{ width: '90%' }}>
-            <CardOverflow>
-                <AspectRatio ratio="2" objectFit='cover'>
-                {image?
-                    <img
-                        src={image[0]?.path}
-                        srcSet={image[0]?.path}
-                        loading="lazy"
-                        alt=""
-                    />
-                :
-                    <img
-                        src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
-                        srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
-                        loading="lazy"
-                        alt=""
-                    />
-                }
-                </AspectRatio>
-                <IconButton
-                aria-label="Like minimal photography"
-                size="md"
-                variant="solid"
-                color="danger"
-                sx={{
-                    position: 'absolute',
-                    zIndex: 2,
-                    borderRadius: '50%',
-                    right: '1rem',
-                    bottom: 0,
-                    transform: 'translateY(50%)',
-                }}
-                >
-                <Favorite />
-                </IconButton>
-            </CardOverflow>
-            <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-                <Link href="#multiple-actions" overlay underline="none">
-                {title}
-                </Link>
-            </Typography>
-            <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-                <Link href="#multiple-actions">{prefecture}</Link>
-            </Typography>
-            <Divider inset="context" />
-            <CardOverflow
-                variant="soft"
-                sx={{
-                display: 'flex',
-                gap: 1.5,
-                py: 1.5,
-                px: 'var(--Card-padding)',
-                bgcolor: 'background.level1',
-                }}
-            >
-                <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-                6.3k views
-                </Typography>
-                <Divider orientation="vertical" />
-                <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-                {showTime}
-                </Typography>
-
-                <IconButton
-                    id="basic-demo-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    variant="outlined"
-                    color="neutral"
-                    onClick={(e) =>handleClick(e)}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="basic-demo-button"
-                >
-                    <MenuItem onClick={handleClose}><EditModal id={id} title={title} prefecture={prefecture} content={content}/></MenuItem>
-                    <MenuItem onClick={handleClose}><DeleteModal id={id}/></MenuItem>
-                </Menu>
-
-            </CardOverflow>
-            </Card>
-        </CssVarsProvider>
+    <Grid item xs={12} md={6}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          borderRadius: "20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          // backgroundColor: " rgba(0, 0, 0, 0.1)",
+          // transition: "transform 1.2s ease-in-out ",
+          cursor: "pointer",
+          "&:hover": {
+            transform: "scale(1.04)",
+            transition: "transform 0.6s ease-in-out",
+          },
+        }}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+        <img
+          src={imageURL}
+          alt=""
+          style={{
+            borderRadius: "20px",
+            width: "100%",
+            maxHeight: "400px",
+            // opacity: hovered ? 0.2 : 1,
+            // transition: "opacity 0.7s ease-in-out",
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "end",
+            justifyContent: "center",
+            paddingBottom: 1,
+            position: "absolute",
+            height: "100%",
+            width: "100%",
+            // opacity: hovered ? 0 : 1,
+            // transition: "opacity 0.7s ease-in-out",
+          }}
+        >
+          <Box
+            minHeight="40%"
+            width="90%"
+            padding="4%"
+            paddingLeft={3}
+            bgcolor="white"
+            sx={{
+              position: "absolute",
+              top: "70%",
+              display: "block",
+              borderRadius: "20px",
+              boxShadow: "2px 2px 2px 2px rgba(0, 0, 0, 0.15)",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box sx={{ flex: 1 }}>
+                <Typography fontWeight="bold">京都旅行</Typography>
+                <Stack direction="row" alignItems="center" mt={0.3}>
+                  <Place />
+                  <JoyTypography level="body3">京都</JoyTypography>
+                </Stack>
+                <JoyTypography level="body3" mt={0.5}>
+                  Added 25 May 2011
+                </JoyTypography>
+              </Box>
+              <JoyIconButton variant="plain" color="neutral">
+                <Avatar />
+              </JoyIconButton>
+            </Box>
+            <Box display='flex' justifyContent='end'>
+              <JoyButton variant="plain" size="sm">詳細</JoyButton>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Grid>
   );
-}
+};
+
+export default PostCard;

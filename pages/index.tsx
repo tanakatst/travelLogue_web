@@ -73,7 +73,7 @@ const Home: NextPage = () => {
               height="40vh"
               sx={{
                 background: "rgba(74,112,165,1) !important",
-                borderRadius: "10px",
+                borderRadius:8,
                 zIndex: 1,
               }}
             >

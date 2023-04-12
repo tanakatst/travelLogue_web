@@ -1,5 +1,9 @@
 import * as React from "react";
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
+import {
+  CssVarsProvider,
+  useColorScheme as useJoyColorScheme,
+} from "@mui/joy/styles";
+import { Grid, useColorScheme as useMaterialColorScheme } from "@mui/material";
 import CssBaseline from "@mui/joy/CssBaseline";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Avatar from "@mui/joy/Avatar";
@@ -37,11 +41,12 @@ import Layout from "../src/components/Navigation/Layout";
 import Navigation from "../src/components/Navigation/NavbarLayout";
 import { joyTheme, muiTheme } from "../src/styles/mui/JoytMaterialMixed";
 import { deepmerge } from "@mui/utils";
-import { AddCircle } from "@mui/icons-material";
 import Link from "next/link";
+import PostCard from "../src/components/pagesComponent/home/myPost/PostCard";
 
 function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode: setMaterialMode } = useMaterialColorScheme();
+  const { setMode: setJoyMode } = useJoyColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -57,9 +62,11 @@ function ColorSchemeToggle() {
       color="primary"
       onClick={() => {
         if (mode === "light") {
-          setMode("dark");
+          setMaterialMode("dark");
+          setJoyMode("dark");
         } else {
-          setMode("light");
+          setMaterialMode("light");
+          setJoyMode("light");
         }
       }}
     >
@@ -111,7 +118,7 @@ export default function FilesExample() {
             >
               <MenuIcon />
             </IconButton>
-            <Link href='/'>
+            <Link href="/">
               <IconButton
                 size="sm"
                 variant="solid"
@@ -122,7 +129,7 @@ export default function FilesExample() {
               <Typography
                 component="h1"
                 fontWeight="xl"
-                sx={{ cursor: "pointer" }}
+                sx={{ color: "white", cursor: "pointer" }}
               >
                 TravelLogue
               </Typography>
@@ -145,6 +152,8 @@ export default function FilesExample() {
             }
             sx={{
               flexBasis: "500px",
+              bgcolor: "white",
+              color: "black",
               display: {
                 xs: "none",
                 sm: "flex",
@@ -169,35 +178,6 @@ export default function FilesExample() {
             >
               <BookRoundedIcon />
             </IconButton>
-            {/* <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="outlined"
-                  color="primary"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Email',
-                  href: '/joy-ui/getting-started/templates/email/',
-                },
-                {
-                  label: 'Team',
-                  href: '/joy-ui/getting-started/templates/team/',
-                },
-                {
-                  label: 'Files',
-                  active: true,
-                  href: '/joy-ui/getting-started/templates/files/',
-                  'aria-current': 'page',
-                },
-              ]}
-            /> */}
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
@@ -205,283 +185,12 @@ export default function FilesExample() {
           <Navigation />
         </Layout.SideNav>
         <Layout.Main>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              gap: 2,
-            }}
-          >
-            <Sheet
-              variant="outlined"
-              sx={{
-                display: { xs: "inherit", sm: "none" },
-                borderRadius: "sm",
-                overflow: "auto",
-                "& > *": {
-                  "&:nth-child(n):not(:nth-last-child(-n+4))": {
-                    borderBottom: "1px solid",
-                    borderColor: "divider",
-                  },
-                },
-              }}
-            >
-              <List
-                aria-labelledby="table-in-list"
-                sx={{
-                  "& .JoyListItemButton-root": { p: "0px" },
-                }}
-              >
-                <ListItem>
-                  <ListItemButton
-                    variant="soft"
-                    sx={{ bgcolor: "transparent" }}
-                  >
-                    <ListItemContent sx={{ p: 2 }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography
-                          level="body2"
-                          startDecorator={<FolderOpenIcon color="primary" />}
-                          sx={{ alignItems: "flex-start" }}
-                        >
-                          Travel pictures
-                        </Typography>
-                        <Typography level="body2" sx={{ color: "success.600" }}>
-                          987.5MB
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mt: 2,
-                        }}
-                      >
-                        <Box>
-                          <AvatarGroup
-                            size="sm"
-                            sx={{
-                              "--AvatarGroup-gap": "-8px",
-                              "--Avatar-size": "24px",
-                            }}
-                          >
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=6"
-                              srcSet="https://i.pravatar.cc/48?img=6 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=7"
-                              srcSet="https://i.pravatar.cc/48?img=7 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=8"
-                              srcSet="https://i.pravatar.cc/48?img=8 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=9"
-                              srcSet="https://i.pravatar.cc/48?img=9 2x"
-                            />
-                          </AvatarGroup>
-                        </Box>
-                        <Typography level="body2">
-                          21 October 2011, 3PM
-                        </Typography>
-                      </Box>
-                    </ListItemContent>
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemButton
-                    variant="soft"
-                    sx={{ bgcolor: "transparent" }}
-                  >
-                    <ListItemContent sx={{ p: 2 }}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography
-                          level="body2"
-                          startDecorator={<FolderOpenIcon color="primary" />}
-                          sx={{ alignItems: "flex-start" }}
-                        >
-                          Important documents
-                        </Typography>
-                        <Typography level="body2" sx={{ color: "success.600" }}>
-                          123.3KB
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mt: 2,
-                        }}
-                      >
-                        <Box>
-                          <AvatarGroup
-                            size="sm"
-                            sx={{
-                              "--AvatarGroup-gap": "-8px",
-                              "--Avatar-size": "24px",
-                            }}
-                          >
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=6"
-                              srcSet="https://i.pravatar.cc/48?img=6 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=7"
-                              srcSet="https://i.pravatar.cc/48?img=7 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=8"
-                              srcSet="https://i.pravatar.cc/48?img=8 2x"
-                            />
-                            <Avatar
-                              src="https://i.pravatar.cc/24?img=9"
-                              srcSet="https://i.pravatar.cc/48?img=9 2x"
-                            />
-                          </AvatarGroup>
-                        </Box>
-                        <Typography level="body2">26 May 2010, 7PM</Typography>
-                      </Box>
-                    </ListItemContent>
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </Sheet>
-            <Card
-              variant="outlined"
-              sx={{
-                "--Card-radius": (theme) => theme.vars.radius.sm,
-                boxShadow: "none",
-              }}
-            >
-              <CardOverflow
-                sx={{
-                  borderBottom: "1px solid",
-                  borderColor: "neutral.outlinedBorder",
-                }}
-              >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "primary.plainColor",
-                    }}
-                  >
-                    .zip
-                  </Typography>
-                </AspectRatio>
-              </CardOverflow>
-              <Box sx={{ pt: 2, display: "flex", alignItems: "center" }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>photos-travel.zip</Typography>
-                  <Typography level="body3" mt={0.5}>
-                    Added 25 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
-                </IconButton>
-              </Box>
-            </Card>
-            <Card
-              sx={{
-                "--Card-radius": (theme) => theme.vars.radius.sm,
-                boxShadow: "none",
-              }}
-            >
-              <CardCover>
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-                />
-              </CardCover>
-              <CardCover
-                sx={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.12))",
-                }}
-              />
-              <CardContent
-                sx={{
-                  mt: "auto",
-                  flexGrow: 0,
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Box sx={{ flex: 1 }}>
-                  <Typography textColor="#fff">torres-del-paine.png</Typography>
-                  <Typography
-                    level="body3"
-                    mt={0.5}
-                    textColor="rgba(255,255,255,0.72)"
-                  >
-                    Added 5 Aug 2016
-                  </Typography>
-                </Box>
-                <IconButton
-                  variant="plain"
-                  color="neutral"
-                  sx={{ color: "#fff" }}
-                >
-                  <EditOutlinedIcon />
-                </IconButton>
-              </CardContent>
-            </Card>
-            <Card
-              variant="outlined"
-              sx={{
-                "--Card-radius": (theme) => theme.vars.radius.sm,
-                boxShadow: "none",
-              }}
-            >
-              <CardOverflow
-                sx={{
-                  borderBottom: "1px solid",
-                  borderColor: "neutral.outlinedBorder",
-                }}
-              >
-                <AspectRatio ratio="16/9" color="primary">
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "primary.plainColor",
-                    }}
-                  >
-                    .zip
-                  </Typography>
-                </AspectRatio>
-              </CardOverflow>
-              <Box sx={{ pt: 2, display: "flex", alignItems: "center" }}>
-                <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
-                  <Typography level="body3" mt={0.5}>
-                    Added 26 May 2011
-                  </Typography>
-                </Box>
-                <IconButton variant="plain" color="neutral">
-                  <EditOutlinedIcon />
-                </IconButton>
-              </Box>
-            </Card>
+          <Box width="100%" px={4} flexGrow={1}>
+            <Grid container columnSpacing={4}rowSpacing={12} pt={4}>
+              {Array.from(Array(10).keys()).map((i) => (
+                <PostCard key={i} />
+              ))}
+            </Grid>
           </Box>
         </Layout.Main>
         <Sheet
