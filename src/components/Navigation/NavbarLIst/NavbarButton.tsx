@@ -4,7 +4,7 @@ import { useTheme, Icon } from '@mui/material';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
 
-const NavbarButton = ({name,icon, isSelected}:{name:string,icon:ReactJSXElement,isSelected:boolean}) => {
+const NavbarButton = ({id,name,icon, isSelected, setIsSelected}:{id:number,name:string,icon:ReactJSXElement,isSelected:boolean, setIsSelected:React.Dispatch<React.SetStateAction<number>>}) => {
     const materialTheme = useTheme().palette
     return (
         <ListItem>
@@ -17,6 +17,7 @@ const NavbarButton = ({name,icon, isSelected}:{name:string,icon:ReactJSXElement,
               ':hover':{backgroundColor:materialTheme.bgColor.blue, color:materialTheme.textColor.white}
             }
           }
+          onClick={()=> setIsSelected(id)}
         >
           <ListItemDecorator
             // sx={{

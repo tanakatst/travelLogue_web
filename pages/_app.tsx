@@ -10,18 +10,17 @@ import {
 import colors from "@mui/joy/colors";
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 const queryClient = new QueryClient();
-import theme from '../styles/mui/theme';
 
-
+import theme from "../styles/mui/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <StyledEngineProvider injectFirst>
         <QueryClientProvider client={queryClient}>
-        <MaterialCssVarsProvider theme={theme}>
+          <MaterialCssVarsProvider theme={theme}>
             {/* <JoyCssVarsProvider> */}
-                  <Component {...pageProps} />
+            <Component {...pageProps} />
             {/* </JoyCssVarsProvider> */}
           </MaterialCssVarsProvider>
           {/* <ToastContainer hideProgressBar={true}/> */}

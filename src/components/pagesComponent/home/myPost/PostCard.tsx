@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Grid,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Avatar, Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import {
   Card,
   CardOverflow,
@@ -22,7 +15,7 @@ const PostCard = () => {
   ("");
 
   const [hovered, setHovered] = React.useState(false);
-  const theme = useTheme().palette
+  const theme = useTheme().palette;
   const handleMouseOver = () => {
     setHovered(true);
   };
@@ -40,8 +33,6 @@ const PostCard = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // backgroundColor: " rgba(0, 0, 0, 0.1)",
-          // transition: "transform 1.2s ease-in-out ",
           cursor: "pointer",
           "&:hover": {
             transform: "scale(1.04)",
@@ -58,8 +49,6 @@ const PostCard = () => {
             borderRadius: "20px",
             width: "100%",
             maxHeight: "400px",
-            // opacity: hovered ? 0.2 : 1,
-            // transition: "opacity 0.7s ease-in-out",
           }}
         />
         <Box
@@ -71,8 +60,6 @@ const PostCard = () => {
             position: "absolute",
             height: "100%",
             width: "100%",
-            // opacity: hovered ? 0 : 1,
-            // transition: "opacity 0.7s ease-in-out",
           }}
         >
           <Box
@@ -104,8 +91,10 @@ const PostCard = () => {
                 <Avatar />
               </JoyIconButton>
             </Box>
-            <Box display='flex' justifyContent='end'>
-              <JoyButton variant="plain" size="sm">詳細</JoyButton>
+            <Box display="flex" justifyContent="end">
+              <JoyButton variant="plain" size="sm">
+                詳細
+              </JoyButton>
             </Box>
           </Box>
         </Box>
