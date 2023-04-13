@@ -10,28 +10,17 @@ import Avatar from "@mui/joy/Avatar";
 import AvatarGroup from "@mui/joy/AvatarGroup";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
-import Card from "@mui/joy/Card";
-import CardOverflow from "@mui/joy/CardOverflow";
-import CardCover from "@mui/joy/CardCover";
-import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Input from "@mui/joy/Input";
 import IconButton from "@mui/joy/IconButton";
 import Divider from "@mui/joy/Divider";
 import Sheet from "@mui/joy/Sheet";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ListItemButton from "@mui/joy/ListItemButton";
-import ListItemContent from "@mui/joy/ListItemContent";
 
 // Icons import
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
-import FindInPageRoundedIcon from "@mui/icons-material/FindInPageRounded";
 import MenuIcon from "@mui/icons-material/Menu";
-import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import BookRoundedIcon from "@mui/icons-material/BookRounded";
@@ -186,14 +175,16 @@ export default function FilesExample() {
         </Layout.SideNav>
         <Layout.Main>
           <Box width="100%" px={4} flexGrow={1}>
-            <Grid container columnSpacing={4}rowSpacing={12} pt={4}>
+            <Grid container columnSpacing={4} rowSpacing={12} pt={4}>
               {Array.from(Array(10).keys()).map((i) => (
                 <PostCard key={i} />
               ))}
             </Grid>
           </Box>
         </Layout.Main>
-        <Sheet
+        <Box my={4} mx={2}  sx={{borderRadius:'20px'}}>
+        </Box>
+        {/* <Sheet
           sx={{
             display: { xs: "none", sm: "initial" },
             borderLeft: "1px solid",
@@ -312,7 +303,7 @@ export default function FilesExample() {
               Add a description
             </Button>
           </Box>
-        </Sheet>
+        </Sheet> */}
       </Layout.Root>
     </CssVarsProvider>
   );

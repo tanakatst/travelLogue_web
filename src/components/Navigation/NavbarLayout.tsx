@@ -1,4 +1,4 @@
-import * as React from "react";
+import react, { useState } from "react";
 import Box from "@mui/joy/Box";
 import IconButton from "@mui/joy/IconButton";
 import List from "@mui/joy/List";
@@ -21,12 +21,12 @@ import {
   Home,
   House,
 } from "@mui/icons-material";
-import { muiTheme } from "../../styles/mui/JoytMaterialMixed";
-import Profile from "../../../pages/profile";
+
 import NavbarButton from "./NavbarLIst/NavbarButton";
 
 export default function Navigation() {
   const materialTheme = useTheme().palette;
+  const [isSelected, setIsSelected] = useState(0);
   return (
     <List size="sm" sx={{ "--ListItem-radius": "8px", "--List-gap": "4px" }}>
       <ListItem nested>
@@ -48,12 +48,30 @@ export default function Navigation() {
             "& .JoyListItemButton-root": { py: "11px", px: "15px" },
           }}
         >
-          <NavbarButton name="Home" icon={<Home />} isSelected={true}/>
-          <NavbarButton name='Plan' icon={<AirplaneTicket />} isSelected={false}/>
-          <NavbarButton name="Profile" icon={<AccountCircle />} isSelected={false} />
+          <NavbarButton
+            id={0}
+            name="Home"
+            icon={<Home />}
+            isSelected={isSelected == 0}
+            setIsSelected={setIsSelected}
+          />
+          <NavbarButton
+            id={1}
+            name="Plan"
+            icon={<AirplaneTicket />}
+            isSelected={isSelected == 1}
+            setIsSelected={setIsSelected}
+          />
+          <NavbarButton
+            id={2}
+            name="Profile"
+            icon={<AccountCircle />}
+            isSelected={isSelected == 2}
+            setIsSelected={setIsSelected}
+          />
         </List>
       </ListItem>
-   
+
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
           Tags
