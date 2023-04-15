@@ -55,7 +55,7 @@ const Home: NextPage = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "bgColor.blue" }}
+                  sx={{ backgroundColor: "bgColor.blue", color:'textColor.' }}
                   onClick={() => router.push("/register")}
                 >
                   新規登録

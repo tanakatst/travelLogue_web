@@ -11,10 +11,10 @@ const NavbarButton = ({id,name,icon, isSelected, setIsSelected}:{id:number,name:
         <ListItemButton
           sx={
             {
-              color: isSelected? materialTheme.textColor.white: materialTheme.textColor.black,
-              backgroundColor:isSelected ? materialTheme.bgColor.blue: materialTheme.bgColor.white,
+              color: isSelected? materialTheme.primary.contrastText: materialTheme.text.primary,
+              backgroundColor:isSelected ? materialTheme.primary.main: materialTheme.bgColor.white,
               borderRadius: 8,
-              ':hover':{backgroundColor:materialTheme.bgColor.blue, color:materialTheme.textColor.white}
+              ':hover':{backgroundColor:materialTheme.primary.light,color: materialTheme.primary.contrastText}
             }
           }
           onClick={()=> setIsSelected(id)}
@@ -30,7 +30,7 @@ const NavbarButton = ({id,name,icon, isSelected, setIsSelected}:{id:number,name:
           >
             {icon}
           </ListItemDecorator>
-          <ListItemContent sx={{ fontWeight: "bold", pl: 1 }}>
+          <ListItemContent sx={{ fontWeight: "bold", pl: 1}}>
             {name}
           </ListItemContent>
         </ListItemButton>

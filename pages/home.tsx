@@ -3,7 +3,11 @@ import {
   CssVarsProvider,
   useColorScheme as useJoyColorScheme,
 } from "@mui/joy/styles";
-import { Grid, useColorScheme as useMaterialColorScheme } from "@mui/material";
+import {
+  Grid,
+  useColorScheme as useMaterialColorScheme,
+  Box as MuiBox,
+} from "@mui/material";
 import CssBaseline from "@mui/joy/CssBaseline";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Avatar from "@mui/joy/Avatar";
@@ -32,25 +36,36 @@ import { joyTheme, muiTheme } from "../src/styles/mui/JoytMaterialMixed";
 import { deepmerge } from "@mui/utils";
 import Link from "next/link";
 import PostCard from "../src/components/pagesComponent/home/myPost/PostCard";
+import { useTheme } from "../src/hooks/context/themeContext";
+import { useTheme as materialTheme } from "@mui/material";
 
 function ColorSchemeToggle() {
+  const { theme, toggleColorMode } = useTheme();
   const { mode, setMode: setMaterialMode } = useMaterialColorScheme();
   const { setMode: setJoyMode } = useJoyColorScheme();
   const [mounted, setMounted] = React.useState(false);
+  const muiTheme = materialTheme().palette;
   React.useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
+    return (
+      <IconButton
+        sx={{ color: muiTheme.primary.contrastText}}
+        size="sm"
+        variant="outlined"
+      />
+    );
   }
   return (
     <IconButton
       id="toggle-mode"
       size="sm"
       variant="outlined"
-      color="primary"
+      sx={{ color: muiTheme.primary.contrastText}}
       onClick={() => {
-        if (mode === "light") {
+        toggleColorMode();
+        if (theme === "light") {
           setMaterialMode("dark");
           setJoyMode("dark");
         } else {
@@ -59,13 +74,14 @@ function ColorSchemeToggle() {
         }
       }}
     >
-      {mode === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+      {theme === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
 }
 
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const theme = materialTheme().palette;
   return (
     <CssVarsProvider
       disableTransitionOnChange
@@ -118,7 +134,7 @@ export default function FilesExample() {
               <Typography
                 component="h1"
                 fontWeight="xl"
-                sx={{ color: "white", cursor: "pointer" }}
+                sx={{ color: theme.primary.contrastText, cursor: "pointer" }}
               >
                 TravelLogue
               </Typography>
@@ -133,7 +149,7 @@ export default function FilesExample() {
                 <Typography
                   fontWeight="lg"
                   fontSize="sm"
-                  textColor="text.tertiary"
+                  sx={{ color: theme.text.secondary }}
                 >
                   /
                 </Typography>
@@ -141,7 +157,7 @@ export default function FilesExample() {
             }
             sx={{
               flexBasis: "500px",
-              bgcolor: "white",
+              backgroundColor: theme.primary.contrastText,
               color: "black",
               display: {
                 xs: "none",
@@ -153,7 +169,6 @@ export default function FilesExample() {
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
               sx={{ display: { xs: "inline-flex", sm: "none" } }}
             >
               <SearchRoundedIcon />
@@ -161,7 +176,7 @@ export default function FilesExample() {
             <IconButton
               size="sm"
               variant="outlined"
-              color="primary"
+              sx={{ color: theme.primary.contrastText }}
               component="a"
               href="/blog/first-look-at-joy/"
             >
@@ -176,134 +191,13 @@ export default function FilesExample() {
         <Layout.Main>
           <Box width="100%" px={4} flexGrow={1}>
             <Grid container columnSpacing={4} rowSpacing={12} pt={4}>
-              {Array.from(Array(10).keys()).map((i) => (
+              {Array.from(Array(4).keys()).map((i) => (
                 <PostCard key={i} />
               ))}
             </Grid>
           </Box>
         </Layout.Main>
-        <Box my={4} mx={2}  sx={{borderRadius:'20px'}}>
-        </Box>
-        {/* <Sheet
-          sx={{
-            display: { xs: "none", sm: "initial" },
-            borderLeft: "1px solid",
-            borderColor: "neutral.outlinedBorder",
-          }}
-        >
-          <Box sx={{ p: 2, display: "flex", alignItems: "center" }}>
-            <Typography sx={{ flex: 1 }}>torres-del-paine.png</Typography>
-            <IconButton variant="outlined" color="neutral" size="sm">
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <Divider />
-          <Box sx={{ display: "flex" }}>
-            <Button
-              variant="soft"
-              sx={{
-                borderRadius: 0,
-                borderBottom: "2px solid",
-                borderColor: "primary.solidBg",
-                flex: 1,
-                py: "1rem",
-              }}
-            >
-              Details
-            </Button>
-            <Button
-              variant="plain"
-              color="neutral"
-              sx={{ borderRadius: 0, flex: 1, py: "1rem" }}
-            >
-              Activity
-            </Button>
-          </Box>
-          <AspectRatio ratio="21/9">
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
-            />
-          </AspectRatio>
-          <Box sx={{ p: 2, display: "flex", gap: 1, alignItems: "center" }}>
-            <Typography level="body2" mr={1}>
-              Shared with
-            </Typography>
-            <AvatarGroup size="sm" sx={{ "--Avatar-size": "24px" }}>
-              <Avatar
-                src="https://i.pravatar.cc/24?img=6"
-                srcSet="https://i.pravatar.cc/48?img=6 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=7"
-                srcSet="https://i.pravatar.cc/48?img=7 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=8"
-                srcSet="https://i.pravatar.cc/48?img=8 2x"
-              />
-              <Avatar
-                src="https://i.pravatar.cc/24?img=9"
-                srcSet="https://i.pravatar.cc/48?img=9 2x"
-              />
-            </AvatarGroup>
-          </Box>
-          <Divider />
-          <Box
-            sx={{
-              gap: 2,
-              p: 2,
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              "& > *:nth-child(odd)": { color: "text.secondary" },
-            }}
-          >
-            <Typography level="body2">Type</Typography>
-            <Typography level="body2" textColor="text.primary">
-              Image
-            </Typography>
-
-            <Typography level="body2">Size</Typography>
-            <Typography level="body2" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
-            <Typography level="body2">Storage used</Typography>
-            <Typography level="body2" textColor="text.primary">
-              3,6 MB (3,258,385 bytes)
-            </Typography>
-
-            <Typography level="body2">Location</Typography>
-            <Typography level="body2" textColor="text.primary">
-              Travel pictures
-            </Typography>
-
-            <Typography level="body2">Owner</Typography>
-            <Typography level="body2" textColor="text.primary">
-              Michael Scott
-            </Typography>
-
-            <Typography level="body2">Modified</Typography>
-            <Typography level="body2" textColor="text.primary">
-              26 October 2016
-            </Typography>
-
-            <Typography level="body2">Created</Typography>
-            <Typography level="body2" textColor="text.primary">
-              5 August 2016
-            </Typography>
-          </Box>
-          <Divider />
-          <Box sx={{ py: 2, px: 1 }}>
-            <Button
-              variant="plain"
-              size="sm"
-              endDecorator={<EditOutlinedIcon />}
-            >
-              Add a description
-            </Button>
-          </Box>
-        </Sheet> */}
+        <MuiBox margin={3} borderRadius={8}  bgcolor="background.paper"></MuiBox>
       </Layout.Root>
     </CssVarsProvider>
   );

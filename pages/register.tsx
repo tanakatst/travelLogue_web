@@ -18,7 +18,6 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { FormHelperText } from "@mui/joy";
 import { Google } from "@mui/icons-material";
 import { useTheme } from "@mui/material";
-import theme from "../styles/mui/theme";
 import { joyTheme, muiTheme } from "../src/styles/mui/JoytMaterialMixed";
 import { deepmerge } from "@mui/utils";
 import { useLogin, useRegister } from "../src/queries/AuthQuery";
@@ -391,7 +390,7 @@ export default function Register() {
                 <Button
                   sx={{
                     backgroundColor: theme.palette.bgColor.blue,
-                    color: theme.palette.textColor.white,
+                    color: theme.palette.primary.contrastText,
                   }}
                   type="submit"
                   fullWidth

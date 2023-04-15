@@ -16,7 +16,8 @@ const IndexNav = () => {
           <Typography
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1, color: "textColor.white" }}
+            color='text.secondary'
+            sx={{ flexGrow: 1 }}
           >
             TravelLogue
           </Typography>

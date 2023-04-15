@@ -35,7 +35,7 @@ function Header(props: BoxProps) {
         {
           p: 2,
           gap: 2,
-          bgcolor: theme.bgColor.blue,
+          bgcolor: theme.primary.main,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',

@@ -67,7 +67,7 @@ const PostCard = () => {
             width="90%"
             padding="4%"
             paddingLeft={3}
-            bgcolor="white"
+            bgcolor="background.paper"
             sx={{
               position: "absolute",
               top: "70%",

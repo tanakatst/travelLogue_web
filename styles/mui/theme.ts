@@ -12,13 +12,11 @@ declare module "@mui/material/styles" {
       white: string;
       charcoal: string;
       orange: string;
-      bladBlue:string;
+      bladBlue: string;
       bladOrange: string;
     };
     textColor: {
-      black: string;
-      white: string;
-      fullBlack: string;
+      primary: string;
     };
   }
   interface PaletteOptions {
@@ -29,20 +27,43 @@ declare module "@mui/material/styles" {
       secondaryWhite: string;
       charcoal: string;
       orange: string;
-      bladBlue:string;
+      bladBlue: string;
       bladOrange: string;
     };
     textColor?: {
-      black: string;
-      white: string;
-      fullBlack: string;
+      primary: string;
+      secondary: string;
     };
   }
 }
 
-export const theme = createTheme({
+export const lightTheme = createTheme({
   // TODO:テーマ設定を行います
   palette: {
+    mode: "light",
+    primary: {
+      main: "#285b94",
+    },
+    secondary: {
+      main: "#f59700",
+      contrastText: "rgba(255,255,255,0.87)",
+    },
+    warning: {
+      main: "#ed9302",
+    },
+    info: {
+      main: "#02b2d1",
+    },
+    error: {
+      main: "#ff5f58",
+    },
+    background: {
+      paper: "#f5f2f2",
+    },
+    text: {
+      primary: "#313131",
+      secondary: "#e6e6e6",
+    },
     bgColor: {
       gray: "#6E6E6E",
       blue: "#4A70A5",
@@ -50,39 +71,13 @@ export const theme = createTheme({
       secondaryWhite: "#EDEDED",
       charcoal: "#F4EADE",
       orange: "#ED8C72",
-      bladBlue:"#1C2B80",
+      bladBlue: "#1C2B80",
       bladOrange: "#E45934",
     },
     textColor: {
-      black: "#585A5A",
-      white: "#EFECEC",
-      fullBlack: "#000",
+      primary: "#585A5A",
+      secondary: "#EFECEC",
     },
-    
-    // mode: 'dark',
-    // primary: {
-    //   main: '#134577',
-    // },
-    // secondary: {
-    //   main: '#f59700',
-    //   contrastText: 'rgba(255,255,255,0.87)',
-    // },
-    // warning: {
-    //   main: '#ed9302',
-    // },
-    // info: {
-    //   main: '#02b2d1',
-    // },
-    // text: {
-    //   primary: '#ece9e9',
-    // },
-    // error: {
-    //   main: '#ff5f58',
-    // },
-    // background: {
-    //   paper: '#2d2d2d',
-    // },
-    
   },
   typography: {
     fontFamily: [
@@ -101,13 +96,49 @@ export const theme = createTheme({
   },
 });
 
-
 // import { ThemeOptions } from '@mui/material/styles';
 
-const themeOptions: ThemeOptions = {
+export const darkTheme = createTheme({
   palette: {
-    
+    mode: "dark",
+    primary: {
+      main: "#285b94",
+      contrastText: "#e8e8e8",
+      light: "#1a4d71",
+    },
+    secondary: {
+      main: "#f59700",
+      contrastText: "rgba(255,255,255,0.87)",
+    },
+    warning: {
+      main: "#ed9302",
+    },
+    info: {
+      main: "#02b2d1",
+    },
+    error: {
+      main: "#ff5f58",
+    },
+    background: {
+      paper: "#292929",
+    },
+    text: {
+      primary: "#e6e6e6",
+      secondary: "#585A5A"
+    },
+    bgColor: {
+      gray: "#6E6E6E",
+      blue: "#4A70A5",
+      primaryWhite: "#E6E6EB",
+      secondaryWhite: "#EDEDED",
+      charcoal: "#F4EADE",
+      orange: "#ED8C72",
+      bladBlue: "#1C2B80",
+      bladOrange: "#E45934",
+    },
+    textColor: {
+      primary: "#EFECEC",
+      secondary: "#585A5A",
+    },
   },
-};
-
-export default theme;
+});
