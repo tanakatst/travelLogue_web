@@ -5,6 +5,7 @@ import { ThemeOptions } from "@mui/material/styles";
 declare module "@mui/material/styles" {
   interface Palette {
     bgColor: {
+      primaryTransparent:string;
       gray: string;
       primaryWhite: string;
       secondaryWhite: string;
@@ -21,6 +22,7 @@ declare module "@mui/material/styles" {
   }
   interface PaletteOptions {
     bgColor?: {
+      primaryTransparent:string;
       gray: string;
       blue: string;
       primaryWhite: string;
@@ -65,6 +67,7 @@ export const lightTheme = createTheme({
       secondary: "#e6e6e6",
     },
     bgColor: {
+      primaryTransparent:'#E6E6EB',
       gray: "#6E6E6E",
       blue: "#4A70A5",
       primaryWhite: "#E6E6EB",
@@ -104,7 +107,7 @@ export const darkTheme = createTheme({
     primary: {
       main: "#285b94",
       contrastText: "#e8e8e8",
-      light: "#1a4d71",
+      // light: "#1a4d71",
     },
     secondary: {
       main: "#f59700",
@@ -127,6 +130,7 @@ export const darkTheme = createTheme({
       secondary: "#585A5A"
     },
     bgColor: {
+      primaryTransparent:'rgba(40,91,148,0.3)',
       gray: "#6E6E6E",
       blue: "#4A70A5",
       primaryWhite: "#E6E6EB",

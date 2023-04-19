@@ -24,7 +24,7 @@ const PostCard = () => {
     setHovered(false);
   };
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={12} sm={6} md={6}>
       <Box
         sx={{
           position: "relative",
