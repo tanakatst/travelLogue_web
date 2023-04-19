@@ -38,6 +38,8 @@ import Link from "next/link";
 import PostCard from "../src/components/pagesComponent/home/myPost/PostCard";
 import { useTheme } from "../src/hooks/context/themeContext";
 import { useTheme as materialTheme } from "@mui/material";
+import RightBar from "../src/components/pagesComponent/home/RightBar";
+import { Add } from "@mui/icons-material";
 
 function ColorSchemeToggle() {
   const { theme, toggleColorMode } = useTheme();
@@ -51,7 +53,7 @@ function ColorSchemeToggle() {
   if (!mounted) {
     return (
       <IconButton
-        sx={{ color: muiTheme.primary.contrastText}}
+        sx={{ color: muiTheme.primary.contrastText }}
         size="sm"
         variant="outlined"
       />
@@ -62,7 +64,7 @@ function ColorSchemeToggle() {
       id="toggle-mode"
       size="sm"
       variant="outlined"
-      sx={{ color: muiTheme.primary.contrastText}}
+      sx={{ color: muiTheme.primary.contrastText }}
       onClick={() => {
         toggleColorMode();
         if (theme === "light") {
@@ -166,6 +168,9 @@ export default function FilesExample() {
             }}
           />
           <Box sx={{ display: "flex", flexDirection: "row", gap: 1.5 }}>
+            <IconButton sx={{ flexGrow: 1 }}>
+              <Add />
+            </IconButton>
             <IconButton
               size="sm"
               variant="outlined"
@@ -197,7 +202,7 @@ export default function FilesExample() {
             </Grid>
           </Box>
         </Layout.Main>
-        <MuiBox margin={3} borderRadius={8}  bgcolor="background.paper"></MuiBox>
+          <RightBar />
       </Layout.Root>
     </CssVarsProvider>
   );
