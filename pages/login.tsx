@@ -19,7 +19,6 @@ import { login, register } from "../src/api/AuthApi";
 import { FormHelperText } from "@mui/joy";
 import { Google, Password } from "@mui/icons-material";
 import { useTheme } from "@mui/material";
-import theme from "../styles/mui/theme";
 import { joyTheme, muiTheme } from "../src/styles/mui/JoytMaterialMixed";
 import { deepmerge } from "@mui/utils";
 import { orange, blue } from "@mui/material/colors";

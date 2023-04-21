@@ -13,6 +13,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useTheme } from "../src/hooks/context/themeContext";
 import { ThemeProvider as ThemeContextProvider } from "../src/hooks/context/themeContext";
+import { AuthProvider } from "../src/hooks/context/AuthContext";
 import { AppContext } from "next/app";
 import App from "next/app";
 
@@ -24,13 +25,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <StyledEngineProvider injectFirst>
         <QueryClientProvider client={queryClient}>
-          <ThemeContextProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <CssBaseline />
-              <Component {...pageProps} />
-              {/* <ToastContainer hideProgressBar={true}/> */}
-            </LocalizationProvider>
-          </ThemeContextProvider>
+          <AuthProvider>
+            <ThemeContextProvider>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <CssBaseline />
+                <Component {...pageProps} />
+                {/* <ToastContainer hideProgressBar={true}/> */}
+              </LocalizationProvider>
+            </ThemeContextProvider>
+          </AuthProvider>
         </QueryClientProvider>
       </StyledEngineProvider>
     </>
