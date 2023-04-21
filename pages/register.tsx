@@ -23,6 +23,7 @@ import { deepmerge } from "@mui/utils";
 import { useLogin, useRegister } from "../src/queries/AuthQuery";
 import { RegisterParams } from "../src/types/User";
 import { CircularProgress } from "@mui/material";
+import { useAuth } from "../src/hooks/context/AuthContext";
 
 interface FormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -141,6 +142,9 @@ export default function Register() {
   const [open, setOpen] = React.useState(false);
   // useMutaionの定義
   const registerMutation = useRegister();
+  // register/login → AuthContext
+  const {isAuth,setIsAuth} = useAuth();
+
   // 新規登録機能
   const { control, handleSubmit, trigger, getValues, watch } = useForm({
     defaultValues: {
@@ -150,7 +154,6 @@ export default function Register() {
       confirmPass: "",
     },
   });
-
   const onSubmit: SubmitHandler<RegisterFormParams> = async (data) => {
     // call Register API
     const params: RegisterParams = {
@@ -163,6 +166,7 @@ export default function Register() {
   const router = useRouter();
   {
     registerMutation.isSuccess && router.push("/home");
+    registerMutation.isSuccess && setIsAuth(true)
   }
   return (
     <>

@@ -40,6 +40,8 @@ import { useTheme } from "../src/hooks/context/themeContext";
 import { useTheme as materialTheme } from "@mui/material";
 import RightBar from "../src/components/pagesComponent/home/RightBar";
 import { Add } from "@mui/icons-material";
+import CreatePost from "../src/components/pagesComponent/home/CreatePost";
+// import CreatePost from "../src/components/pagesComponent/home/createPost";
 
 function ColorSchemeToggle() {
   const { theme, toggleColorMode } = useTheme();
@@ -168,9 +170,7 @@ export default function FilesExample() {
             }}
           />
           <Box sx={{ display: "flex", flexDirection: "row", gap: 1.5 }}>
-            <IconButton sx={{ flexGrow: 1 }}>
-              <Add />
-            </IconButton>
+            {/* <CreatePost /> */}
             <IconButton
               size="sm"
               variant="outlined"
@@ -178,6 +178,7 @@ export default function FilesExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
+            <CreatePost />
             <IconButton
               size="sm"
               variant="outlined"
