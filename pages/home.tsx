@@ -41,6 +41,10 @@ import { useTheme as materialTheme } from "@mui/material";
 import RightBar from "../src/components/pagesComponent/home/RightBar";
 import { Add } from "@mui/icons-material";
 import CreatePost from "../src/components/pagesComponent/home/CreatePost";
+import { useQuery } from "react-query";
+import { useUser } from "../src/queries/AuthQuery";
+import { getUser } from "../src/api/AuthApi";
+import { useGetPosts } from "../src/queries/PostQuery";
 // import CreatePost from "../src/components/pagesComponent/home/createPost";
 
 function ColorSchemeToggle() {
@@ -83,9 +87,12 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function FilesExample() {
+export default function Home() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const theme = materialTheme().palette;
+  const user = useUser();
+  const posts  = useGetPosts().data?.data;
+
   return (
     <CssVarsProvider
       disableTransitionOnChange
@@ -197,13 +204,13 @@ export default function FilesExample() {
         <Layout.Main>
           <Box width="100%" px={4} flexGrow={1}>
             <Grid container columnSpacing={4} rowSpacing={12} pt={4}>
-              {Array.from(Array(4).keys()).map((i) => (
-                <PostCard key={i} />
+              {posts?.map((post:any,key:any) => (
+                <PostCard id={post.id} title={post.title} prefecture={post.prefecture} place_name={post.place_name}/>
               ))}
             </Grid>
           </Box>
         </Layout.Main>
-          <RightBar />
+        <RightBar />
       </Layout.Root>
     </CssVarsProvider>
   );

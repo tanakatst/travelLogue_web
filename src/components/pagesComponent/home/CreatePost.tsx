@@ -11,15 +11,45 @@ import {
   FormLabel,
   FormHelperText,
   Textarea,
+  Button,
 } from "@mui/joy";
 import Autocomplete from "@mui/joy/Autocomplete";
 import { Add, Upload } from "@mui/icons-material";
-
+import {
+  DatePicker,
+  DateValidationError,
+  LocalizationProvider,
+} from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 // 画面大きさmd以上の時
 
 const CreatePost = () => {
   const [open, setOpen] = useState(false);
+  const [dateError, setDateError] = React.useState<DateValidationError | null>(
+    null
+  );
   const theme = useTheme().palette;
+
+  const dateErrorMessage = React.useMemo(() => {
+    switch (dateError) {
+      case "maxDate": {
+        return "現在より前の日付を入力してください。";
+      }
+      case "minDate": {
+        return "Please select a date in the first quarter of 2022";
+      }
+
+      case "invalidDate": {
+        return "指定された日付は有効ではありません。";
+      }
+
+      default: {
+        return "";
+      }
+    }
+  }, [dateError]);
   return (
     <>
       <IconButton sx={{ flexGrow: 1 }} onClick={() => setOpen(true)}>
@@ -56,25 +86,30 @@ const CreatePost = () => {
               bgcolor: "background.body",
             }}
           />
+          <Button sx={{ position: "absolute", right: "30px" }}>
+            プレビュー
+          </Button>
+
           <Typography
+            width="100%"
             textAlign="center"
             component="h2"
             id="modal-title"
             level="h4"
             textColor="inherit"
             fontWeight="lg"
-            mb={1}
+            pt={1}
           >
             New Post
           </Typography>
 
-          <Box width="90%" height="100%" p={4}>
+          <Box width="90%" height="100%" p={3} pt={1}>
             <Stack
               direction="column"
               alignItems="center"
               //   bgcolor="green"
               height="100%"
-              p={5}
+              pt={2}
               px={7}
             >
               <TextField
@@ -85,7 +120,7 @@ const CreatePost = () => {
                 <FormControl sx={{ width: "45%" }}>
                   <FormLabel>都道府県</FormLabel>
                   <Autocomplete
-                    placeholder="都道府県"
+                    placeholder="Placeholder"
                     // sx={{ width: "100%" }}
                   />
                   <FormHelperText>
@@ -94,17 +129,33 @@ const CreatePost = () => {
                 </FormControl>
                 <FormControl sx={{ width: "45%" }}>
                   <FormLabel>日時</FormLabel>
-                  <Autocomplete
-                    placeholder="Placeholder"
-                    // sx={{ width: "100%" }}
-                  />
-                  <FormHelperText>
-                    A description for the combo box.
-                  </FormHelperText>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      sx={{
+                        "& .css-yptv1a-MuiInputBase-root-MuiOutlinedInput-root":
+                          {
+                            backgroundColor: "background.paper",
+                            minHeight: "2.0rem",
+                            height: "39px",
+                            borderRadius: "8px",
+                          },
+                        "& .css-jck64u-MuiSvgIcon-root": {
+                          fontSize: "1.1rem",
+                        },
+                      }}
+                      defaultValue={dayjs()}
+                      onError={(newError) => setDateError(newError)}
+                      // minDate={startOfQ12022}
+                      maxDate={dayjs()}
+                    />
+                  </LocalizationProvider>
+                  <FormHelperText>{dateErrorMessage}</FormHelperText>
                 </FormControl>
               </Stack>
-              <FormControl sx={{width:'80%', height:'900px', maxHeight:'300px'}}>
-                <FormLabel>Label</FormLabel>
+              <FormControl
+                sx={{ width: "80%", height: "200px", maxHeight: "300px" }}
+              >
+                <FormLabel>内容</FormLabel>
                 <Textarea placeholder="Placeholder" minRows={2} />
                 <FormHelperText>This is a helper text.</FormHelperText>
               </FormControl>
@@ -115,7 +166,7 @@ const CreatePost = () => {
                 justifyContent="center"
                 height="160px"
                 maxHeight="300px"
-                width="70%"
+                width="80%"
                 sx={{
                   position: "relative",
                   cursor: "pointer",

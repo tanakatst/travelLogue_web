@@ -11,10 +11,13 @@ import {
 import colors from "@mui/joy/colors";
 import { DateCalendar } from "@mui/x-date-pickers";
 import { red } from "@mui/material/colors";
+import { useUser } from "../../../queries/AuthQuery";
 // import { DateRangePickerCalendar } from "react-nice-dates";
 // import { DatePicker } from "@mui/lab";
 const RightBar = () => {
   const theme = useTheme().palette;
+  const user = useUser();
+
   return (
     <Box
       marginX={4}
@@ -22,7 +25,7 @@ const RightBar = () => {
       marginY={3}
       paddingX={3}
       borderRadius={8}
-      sx={{display:{xs:'none', md:'block'}}}
+      sx={{ display: { xs: "none", md: "block" } }}
       bgcolor="background.paper"
     >
       <Stack direction="column" justifyContent="space-around" height="100%">
@@ -35,7 +38,7 @@ const RightBar = () => {
           <Avatar />
           <Stack direction="column" alignItems="center">
             <Typography pt={1} color="text.primary" fontWeight="bold">
-              Sota Tanaka
+              {user?.name}
             </Typography>
             <Typography fontSize="small" color="text.secondary">
               Beginner Traveler
@@ -145,7 +148,7 @@ const RightBar = () => {
             maxHeight="100px"
             display="flex"
             alignItems="center"
-            justifyContent='center'
+            justifyContent="center"
             borderRadius="20px"
             bgcolor="bgColor.primaryTransparent"
           >
@@ -158,13 +161,17 @@ const RightBar = () => {
                 sx={{ position: "relative" }}
               />
             </Box>
-            <Box px={1} textAlign='center'>
-              <Typography  fontSize="0.8rem" fontWeight='bold' textAlign="center">
+            <Box px={1} textAlign="center">
+              <Typography
+                fontSize="0.8rem"
+                fontWeight="bold"
+                textAlign="center"
+              >
                 70%　🎉
               </Typography>
-      
+
               <Typography fontSize="0.2rem">
-                <span style={{fontWeight:'bold'}}>Next Rank:</span> amatur
+                <span style={{ fontWeight: "bold" }}>Next Rank:</span> amatur
               </Typography>
             </Box>
           </Box>

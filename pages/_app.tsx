@@ -1,12 +1,11 @@
 import "@fontsource/public-sans";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, useQueries, useQuery } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 
 import colors from "@mui/joy/colors";
 import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
-const queryClient = new QueryClient();
 import { CssBaseline } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -17,6 +16,7 @@ import { AuthProvider } from "../src/hooks/context/AuthContext";
 import { AppContext } from "next/app";
 import App from "next/app";
 
+const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   const { theme, toggleColorMode } = useTheme();
   const [isThemeContextChanged, setIsThemeContextChanged] = useState(false);

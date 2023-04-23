@@ -3,10 +3,20 @@ import { toast } from "react-toastify";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import { useAuth } from "../hooks/context/AuthContext";
+import { User } from "../types/User";
 
 const useUser = () => {
-  return useQuery("user", () => api.getUser());
+  const data = useQuery("getUser", () => api.getUser.then((res) => res.data), {
+    onSuccess: (res) => {
+      return res.data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
+  return data.data;
 };
+
 const useLogin = () => {
   return useMutation(api.login, {
     onSuccess: (res) => {
