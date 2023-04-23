@@ -9,13 +9,18 @@ import {
 } from "@mui/joy";
 import { Place, Height } from "@mui/icons-material";
 import { Edit } from "@mui/icons-material";
-const PostCard = () => {
+import { title } from 'process';
+
+
+const PostCard = ({id,title, prefecture, place_name}:{id:number,title:string, prefecture:string,place_name:string}) => {
   const imageURL =
     "https://img.freepik.com/free-photo/yasaka-pagoda-and-sannen-zaka-street-in-kyoto-japan_335224-41.jpg";
   ("");
 
+  // タイトル表示での最大文字列指定
+  const maxChars = 10
+  const truncatedTitle = title.slice(0, maxChars);
   const [hovered, setHovered] = React.useState(false);
-  const theme = useTheme().palette;
   const handleMouseOver = () => {
     setHovered(true);
   };
@@ -78,10 +83,10 @@ const PostCard = () => {
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box sx={{ flex: 1 }}>
-                <Typography fontWeight="bold">京都旅行</Typography>
+                <Typography fontWeight="bold">{title.length > maxChars? truncatedTitle: title}{title.length > maxChars  && '...'}</Typography>
                 <Stack direction="row" alignItems="center" mt={0.3}>
                   <Place />
-                  <JoyTypography level="body3">京都</JoyTypography>
+                  <JoyTypography level="body3">{place_name}</JoyTypography>
                 </Stack>
                 <JoyTypography level="body3" mt={0.5}>
                   Added 25 May 2011
