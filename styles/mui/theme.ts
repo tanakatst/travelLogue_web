@@ -60,7 +60,8 @@ export const lightTheme = createTheme({
       main: "#ff5f58",
     },
     background: {
-      paper: "#f5f2f2",
+      paper: '#f5f5f5',
+      default: '#e6e6e6',
     },
     text: {
       primary: "#313131",

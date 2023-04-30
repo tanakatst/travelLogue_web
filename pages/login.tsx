@@ -118,15 +118,13 @@ export default function Login() {
     },
   });
 
-  const onSubmit: SubmitHandler<LoginParams> = (data) => {
+  const onSubmit: SubmitHandler<LoginParams> = async (data) => {
     // call LoginMutation
     const params = { email: data.email, password: data.password };
     loginMutation.mutate(params);
   };
-
-  {
-    loginMutation.isSuccess && router.push("/home");
-  }
+  console.log(loginMutation)
+  loginMutation.status == 'success' && router.push("/home");
   return (
     <CssVarsProvider
       defaultMode="dark"

@@ -21,7 +21,7 @@ type Post = {
   images: image[];
 };
 
-const getPosts = http.get("/api/posts");
+const getPosts = () => http.get("/api/posts");
 
 const post = async (formData: FormData) => {
   await http.get("/sanctum/csrf-cookie").then(async (response) => {

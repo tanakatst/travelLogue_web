@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Post } from "../types/Post";
 
 const useGetPosts = () => {
-  return useQuery("getPosts", () => api.getPosts.then((res) => res.data), {
+  return useQuery("getPosts", async() =>  await api.getPosts().then((res) => res.data), {
     onSuccess: (res) => {
       return res.data;
     },

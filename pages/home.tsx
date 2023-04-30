@@ -40,7 +40,7 @@ import { useTheme } from "../src/hooks/context/themeContext";
 import { useTheme as materialTheme } from "@mui/material";
 import RightBar from "../src/components/pagesComponent/home/RightBar";
 import { Add } from "@mui/icons-material";
-import CreatePost from "../src/components/pagesComponent/home/CreatePost";
+import CreatePost from "../src/components/pagesComponent/home/createPost/CreatePost";
 import { useQuery } from "react-query";
 import { useUser } from "../src/queries/AuthQuery";
 import { getUser } from "../src/api/AuthApi";
@@ -91,7 +91,7 @@ export default function Home() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const theme = materialTheme().palette;
   const user = useUser();
-  const posts  = useGetPosts().data?.data;
+  const posts = useGetPosts().data?.data;
 
   return (
     <CssVarsProvider
@@ -204,8 +204,13 @@ export default function Home() {
         <Layout.Main>
           <Box width="100%" px={4} flexGrow={1}>
             <Grid container columnSpacing={4} rowSpacing={12} pt={4}>
-              {posts?.map((post:any,key:any) => (
-                <PostCard id={post.id} title={post.title} prefecture={post.prefecture} place_name={post.place_name}/>
+              {posts?.map((post: any, key: any) => (
+                <PostCard
+                  id={post.id}
+                  title={post.title}
+                  prefecture={post.prefecture}
+                  place_name={post.place_name}
+                />
               ))}
             </Grid>
           </Box>
