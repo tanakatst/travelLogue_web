@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Box, useTheme, Stack, Divider, ToggleButton } from "@mui/material";
 import {
   Modal,
@@ -155,7 +155,6 @@ const CreatePost = () => {
                   投稿
                 </Button>
               )}
-
               {page != 1 && (
                 <Button
                   variant="plain"
@@ -245,7 +244,13 @@ const CreateDetails = ({ images }: ImagesProps) => {
   const [dateError, setDateError] = React.useState<DateValidationError | null>(
     null
   );
+  const [imageURL, setImageURL] = useState<string | undefined>()
+  useEffect(()=>{
+    const imageURL = images && URL.createObjectURL(images[0])
+    imageURL && setImageURL(imageURL)
+  },[images])
 
+  console.log(imageURL)
   const dateErrorMessage = React.useMemo(() => {
     switch (dateError) {
       case "maxDate": {
@@ -266,7 +271,7 @@ const CreateDetails = ({ images }: ImagesProps) => {
   }, [dateError]);
 
   const prefectureOptions = useGetInitialData()?.data;
-  console.log(prefectureOptions);
+  // console.log(prefectureOptions);
   return (
     <Stack
       sx={{

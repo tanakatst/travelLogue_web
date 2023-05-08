@@ -28,7 +28,7 @@ const post = async (formData: FormData) => {
     const data = await http.post("/api/posts", formData, {
       headers: { "content-type": "multipart/form-data" },
     });
-    console.log(data);
+
   });
 };
 

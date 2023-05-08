@@ -44,16 +44,17 @@ const Cropper: React.FC<Props> = ({ imageToCrop, croppedImage }) => {
     const base64Image = canvas.toDataURL("image/jpeg");
     croppedImage(base64Image);
   };
+
   return (
     <>
       {imageToCrop && (
-        <Box display='flex' alignItems='center' justifyContent='center'>
+        <Box display="flex" alignItems="center" justifyContent="center">
           <ReactCrop
             style={{
               height: "auto",
               margin: "auto",
               display: "flex",
-              flexDirection:'row',
+              flexDirection: "row",
               alignItems: "center",
               position: "relative",
             }}
@@ -70,6 +71,9 @@ const Cropper: React.FC<Props> = ({ imageToCrop, croppedImage }) => {
               bottom: 20,
               backgroundColor: "background.paper",
             }}
+            disabled={
+              crop.x == 0 || crop.y == 0 || crop.height == 0 || crop.width == 0
+            }
             onClick={cropImageNow}
           >
             <CropIcon />
