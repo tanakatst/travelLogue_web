@@ -6,7 +6,7 @@ import { useAuth } from "../hooks/context/AuthContext";
 import { User } from "../types/User";
 
 const useUser = () => {
-  const data = useQuery("getUser", () => api.getUser.then((res) => res.data), {
+  const data = useQuery("getUser",async () => await api.getUser().then((res) => res.data), {
     onSuccess: (res) => {
       return res.data;
     },

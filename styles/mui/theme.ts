@@ -1,11 +1,27 @@
-import { createTheme } from "@mui/material/styles";
+import { PaletteColorOptions, createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { ThemeOptions } from "@mui/material/styles";
 // mui theme typescript
+
+type Color = {
+  0: string;
+  10: string;
+  20: string;
+  30: string;
+  40: string;
+  50: string;
+  60: string;
+  70: string;
+  80: string;
+  90: string;
+  100: string;
+}
 declare module "@mui/material/styles" {
   interface Palette {
+    prime: Color;
+    second:Color;
     bgColor: {
-      primaryTransparent:string;
+      primaryTransparent: string;
       gray: string;
       primaryWhite: string;
       secondaryWhite: string;
@@ -21,8 +37,10 @@ declare module "@mui/material/styles" {
     };
   }
   interface PaletteOptions {
+    prime: Color;
+    second:Color;
     bgColor?: {
-      primaryTransparent:string;
+      primaryTransparent: string;
       gray: string;
       blue: string;
       primaryWhite: string;
@@ -38,36 +56,40 @@ declare module "@mui/material/styles" {
     };
   }
 }
-
 export const lightTheme = createTheme({
   // TODO:テーマ設定を行います
   palette: {
     mode: "light",
-    primary: {
-      main: "#285b94",
+    // メインカラー
+    prime: {
+      0: "#F3FEFF",
+      10: "#d4f5f4",
+      20: "#71E4E2",
+      30: "#52DEDC",
+      40: "#37D9D7",
+      50: "#26C9C7",
+      60: "#21B1AF",
+      70: "#1D9C9A",
+      80: "#288988",
+      90: "#1A6F6D",
+      100: "#004140",
     },
-    secondary: {
-      main: "#f59700",
-      contrastText: "rgba(255,255,255,0.87)",
-    },
-    warning: {
-      main: "#ed9302",
-    },
-    info: {
-      main: "#02b2d1",
-    },
-    error: {
-      main: "#ff5f58",
-    },
-    background: {
-      paper: "#f5f2f2",
-    },
-    text: {
-      primary: "#313131",
-      secondary: "#e6e6e6",
+    // サブカラー
+    second:{
+      0: "#FFFFFF",
+      10: "#FEF5DD",
+      20: "#FDE9B7",
+      30: "#FCDF94",
+      40: "#FBD574",
+      50: "#FACC57",
+      60: "#F9C33A",
+      70: "#F8BB1F",
+      80: "#F6B308",
+      90: "#E0A307",
+      100: "#CC9406",
     },
     bgColor: {
-      primaryTransparent:'#E6E6EB',
+      primaryTransparent: "#E6E6EB",
       gray: "#6E6E6E",
       blue: "#4A70A5",
       primaryWhite: "#E6E6EB",
@@ -82,21 +104,7 @@ export const lightTheme = createTheme({
       secondary: "#EFECEC",
     },
   },
-  typography: {
-    fontFamily: [
-      // 'DotGothic16,sans-serif',
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      // 'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-  },
+  typography: {},
 });
 
 // import { ThemeOptions } from '@mui/material/styles';
@@ -104,33 +112,36 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
-    primary: {
-      main: "#285b94",
-      contrastText: "#e8e8e8",
-      // light: "#1a4d71",
+    // メインカラー
+    prime: {
+      0: "#F3FEFF",
+      10: "#93EBE9",
+      20: "#71E4E2",
+      30: "#52DEDC",
+      40: "#37D9D7",
+      50: "#26C9C7",
+      60: "#21B1AF",
+      70: "#1D9C9A",
+      80: "#288988",
+      90: "#1A6F6D",
+      100: "#004140",
     },
-    secondary: {
-      main: "#f59700",
-      contrastText: "rgba(255,255,255,0.87)",
-    },
-    warning: {
-      main: "#ed9302",
-    },
-    info: {
-      main: "#02b2d1",
-    },
-    error: {
-      main: "#ff5f58",
-    },
-    background: {
-      paper: "#292929",
-    },
-    text: {
-      primary: "#e6e6e6",
-      secondary: "#585A5A"
+    // サブカラー
+    second:{
+      0: "#FFFFFF",
+      10: "#FEF5DD",
+      20: "#FDE9B7",
+      30: "#FCDF94",
+      40: "#FBD574",
+      50: "#FACC57",
+      60: "#F9C33A",
+      70: "#F8BB1F",
+      80: "#F6B308",
+      90: "#E0A307",
+      100: "#CC9406",
     },
     bgColor: {
-      primaryTransparent:'rgba(40,91,148,0.3)',
+      primaryTransparent: "rgba(40,91,148,0.3)",
       gray: "#6E6E6E",
       blue: "#4A70A5",
       primaryWhite: "#E6E6EB",

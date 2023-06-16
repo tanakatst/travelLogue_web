@@ -12,9 +12,9 @@ const MakePlan = () => {
     // google map表示設定
     return(
     <>
-        {/* <Navigation> */}
-            {/* <MakePlanMap/> */}
-        {/* </Navigation> */}
+        {/* <Navigation> 
+            <MakePlanMap/>
+        </Navigation> */}
     </>
 
 
