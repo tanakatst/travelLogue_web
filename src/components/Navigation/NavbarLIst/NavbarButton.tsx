@@ -1,41 +1,63 @@
-import React from 'react';
-import { ListItem, ListItemButton, ListItemDecorator, ListItemContent } from '@mui/joy';
-import { useTheme, Icon } from '@mui/material';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import React from "react";
+import { ListItemButton, ListItemIcon, Typography } from "@mui/material";
+import { useTheme, Icon, Box, ListItemText } from "@mui/material";
+import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+import Link from "next/link";
+import path from "path";
+import { Url, UrlObject } from "url";
 
-
-const NavbarButton = ({id,name,icon, isSelected, setIsSelected}:{id:number,name:string,icon:ReactJSXElement,isSelected:boolean, setIsSelected:React.Dispatch<React.SetStateAction<number>>}) => {
-    const materialTheme = useTheme().palette
-    return (
-        <ListItem>
-        <ListItemButton
-          sx={
-            {
-              color: isSelected? materialTheme.primary.contrastText: materialTheme.text.primary,
-              backgroundColor:isSelected ? materialTheme.primary.main: materialTheme.bgColor.white,
-              borderRadius: 8,
-              ':hover':{backgroundColor:materialTheme.primary.light,color: materialTheme.primary.contrastText}
-            }
-          }
-          onClick={()=> setIsSelected(id)}
-        >
-          <ListItemDecorator
-            // sx={{
-            //   color: materialTheme.textColor.white,
-            //   ":hover": {
-            //     backgroundColor: materialTheme.bgColor.blue,
-            //     color: materialTheme.textColor.white,
-            //   },
-            // }}
+const NavbarButton = ({
+  id,
+  name,
+  icon,
+  path,
+  isSelected,
+  setIsSelected,
+}: {
+  id: number;
+  path: string | null;
+  icon: ReactJSXElement | boolean;
+  name: string;
+  isSelected: number;
+  setIsSelected: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  return (
+    <>
+      {path ? (
+        <Link href={path}>
+          <ListItemButton
+            sx={{
+              height: "64px",
+              borderRadius: "24px",
+              backgroundColor: isSelected === id ? "prime.20" : "inherit",
+              "&:hover": { backgroundColor: "prime.20", cursor: "pointer" },
+            }}
+            onClick={() => setIsSelected(id)}
           >
-            {icon}
-          </ListItemDecorator>
-          <ListItemContent sx={{ fontWeight: "bold", pl: 1}}>
-            {name}
-          </ListItemContent>
+            <ListItemIcon>{icon}</ListItemIcon>
+            <ListItemText sx={{ fontWeight: "bold" }}>
+              <Typography sx={{ fontWeight: "bold" }}>{name}</Typography>
+            </ListItemText>
+          </ListItemButton>
+        </Link>
+      ) : (
+        <ListItemButton
+          sx={{
+            height: "64px",
+            borderRadius: "24px",
+            backgroundColor: isSelected === id ? "prime.20" : "inherit",
+            "&:hover": { backgroundColor: "prime.20", cursor: "pointer" },
+          }}
+          onClick={() => setIsSelected(id)}
+        >
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText sx={{ fontWeight: "bold" }}>
+            <Typography sx={{ fontWeight: "bold" }}>{name}</Typography>
+          </ListItemText>
         </ListItemButton>
-      </ListItem>
-    )
-}
+      )}
+    </>
+  );
+};
 
 export default NavbarButton;

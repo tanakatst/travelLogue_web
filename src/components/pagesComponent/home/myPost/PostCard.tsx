@@ -1,24 +1,33 @@
 import React from "react";
-import { Avatar, Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import {
-  Card,
-  CardOverflow,
-  Button as JoyButton,
-  Typography as JoyTypography,
-  IconButton as JoyIconButton,
-} from "@mui/joy";
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { Place, Height } from "@mui/icons-material";
-import { Edit } from "@mui/icons-material";
-import { title } from 'process';
+// import Avatar from "@mui/material";
 
-
-const PostCard = ({id,title, prefecture, place_name}:{id:number,title:string, prefecture:string,place_name:string}) => {
+const PostCard = ({
+  id,
+  title,
+  prefecture,
+  place_name,
+}: {
+  id: number;
+  title: string;
+  prefecture: string;
+  place_name: string;
+}) => {
   const imageURL =
     "https://img.freepik.com/free-photo/yasaka-pagoda-and-sannen-zaka-street-in-kyoto-japan_335224-41.jpg";
   ("");
 
   // タイトル表示での最大文字列指定
-  const maxChars = 10
+  const maxChars = 10;
   const truncatedTitle = title.slice(0, maxChars);
   const [hovered, setHovered] = React.useState(false);
   const handleMouseOver = () => {
@@ -29,7 +38,7 @@ const PostCard = ({id,title, prefecture, place_name}:{id:number,title:string, pr
     setHovered(false);
   };
   return (
-    <Grid item xs={12} sm={6} md={6}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Box
         sx={{
           position: "relative",
@@ -38,7 +47,7 @@ const PostCard = ({id,title, prefecture, place_name}:{id:number,title:string, pr
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          cursor: "pointer",
+          // cursor: "pointer",
           "&:hover": {
             transform: "scale(1.04)",
             transition: "transform 0.6s ease-in-out",
@@ -83,23 +92,22 @@ const PostCard = ({id,title, prefecture, place_name}:{id:number,title:string, pr
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box sx={{ flex: 1 }}>
-                <Typography fontWeight="bold">{title.length > maxChars? truncatedTitle: title}{title.length > maxChars  && '...'}</Typography>
+                <Typography fontWeight="bold">
+                  {title.length > maxChars ? truncatedTitle : title}
+                  {title.length > maxChars && "..."}
+                </Typography>
                 <Stack direction="row" alignItems="center" mt={0.3}>
                   <Place />
-                  <JoyTypography level="body3">{place_name}</JoyTypography>
+                  <Typography>{place_name}</Typography>
                 </Stack>
-                <JoyTypography level="body3" mt={0.5}>
-                  Added 25 May 2011
-                </JoyTypography>
+                <Typography mt={0.5}>Added 25 May 2011</Typography>
               </Box>
-              <JoyIconButton variant="plain" color="neutral">
+              {/* <IconButton>
                 <Avatar />
-              </JoyIconButton>
+              </IconButton> */}
             </Box>
             <Box display="flex" justifyContent="end">
-              <JoyButton variant="plain" size="sm">
-                詳細
-              </JoyButton>
+              <Button>詳細</Button>
             </Box>
           </Box>
         </Box>

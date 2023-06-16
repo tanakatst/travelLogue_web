@@ -33,6 +33,8 @@ interface SignInFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
+
+
 function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -123,8 +125,10 @@ export default function Login() {
     const params = { email: data.email, password: data.password };
     loginMutation.mutate(params);
   };
-  console.log(loginMutation)
-  loginMutation.status == 'success' && router.push("/home");
+
+
+  console.log(loginMutation);
+  loginMutation.status == "success" && router.push("/home");
   return (
     <CssVarsProvider
       defaultMode="dark"

@@ -2,7 +2,7 @@ import * as api from "../api/PostApi";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { Post } from "../types/Post";
+import { Post } from "../types/Home/Post";
 
 const useGetPosts = () => {
   return useQuery("getPosts", async() =>  await api.getPosts().then((res) => res.data), {
