@@ -271,7 +271,6 @@ const CreateDetails = ({ images }: ImagesProps) => {
   }, [dateError]);
 
   const prefectureOptions = useGetInitialData()?.data;
-  // console.log(prefectureOptions);
   return (
     <Stack
       sx={{

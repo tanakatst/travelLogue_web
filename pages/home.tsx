@@ -15,7 +15,6 @@ type Posts = Post[];
 const Home = () => {
   const [open, setOpen] = useState(true);
   const user_post: Posts = useGetPosts()?.data?.data;
-  console.log(user_post);
   return (
     <Box width="100%" height="100vh">
       <Stack width="100%" height="100%" direction="row">
@@ -25,6 +24,7 @@ const Home = () => {
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}
+            rowGap={10}
             columns={{ xs: 4, sm: 8, md: 12 }}
             sx={{ width: "88%", p: { xs: 3, md: 6 } }}
           >
