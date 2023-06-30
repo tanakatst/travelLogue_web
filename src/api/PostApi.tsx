@@ -1,5 +1,5 @@
 import React from "react";
-import { http } from "./axios.csrf";
+import { http } from "../lib/axios.csrf";
 import { title } from "process";
 
 interface image {
@@ -28,7 +28,6 @@ const post = async (formData: FormData) => {
     const data = await http.post("/api/posts", formData, {
       headers: { "content-type": "multipart/form-data" },
     });
-
   });
 };
 
