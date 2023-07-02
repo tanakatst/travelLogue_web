@@ -1,14 +1,14 @@
 import { Box, Drawer, Grid, Stack } from "@mui/material";
 import React, { useState } from "react";
 import Header from "../src/components/Navigation/Header/Header";
-import Navigation from "../src/components/Navigation/NavbarLayout";
+import Navigation from "../src/layouts/NavbarLayout";
 import PostCard from "../src/components/pagesComponent/home/myPost/PostCard";
 import { title } from "process";
 import MainFeature from "../src/components/pagesComponent/home/MainFeature/MainFeature";
 import { pt } from "date-fns/locale";
-import ShowPeoplePost from "../src/components/pagesComponent/home/peoplePost.tsx/showPeoplePost";
+import ShowPeoplePost from "../src/features/home/services/showPost/showPeoplePost";
 import { useGetPosts, usePost } from "../src/queries/PostQuery";
-import { Post, image } from "../src/types/Home/Post";
+import { Post, image } from "../src/features/home/types/Post";
 import { post } from "../src/api/PostApi";
 
 type Posts = Post[];
@@ -20,7 +20,7 @@ const Home = () => {
       <Stack width="100%" height="100%" direction="row">
         <Navigation />
         <Box sx={{ p: 2, width: "80%" }}>
-          <MainFeature />
+          {/* <MainFeature /> */}
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}

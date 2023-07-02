@@ -1,8 +1,8 @@
 import axios from "axios";
 import { User } from "../types/User";
-import { http } from "./axios.csrf";
+import { http } from "../lib/axios.csrf";
 
-const  getUser = () => http.get(`/api/user`);
+const getUser = () => http.get(`/api/user`);
 // 画像のポストもできるようにする。
 
 const login = async ({

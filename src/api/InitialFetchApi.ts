@@ -1,6 +1,5 @@
-import {http} from './axios.csrf'
+import { http } from "../lib/axios.csrf";
 
-const fetchInitialData = () => http.get('/api/initialData')
+const fetchInitialData = () => http.get("/api/initialData");
 
-
-export {fetchInitialData}
+export { fetchInitialData };
