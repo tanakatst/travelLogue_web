@@ -3,7 +3,7 @@ import {
   experimental_extendTheme as materialExtendTheme,
   Experimental_CssVarsProvider as MaterialCssVarsProvider,
 } from "@mui/material/styles";
-import { lightTheme, darkTheme } from "../../../styles/mui/theme";
+import { lightTheme, darkTheme } from "../../styles/mui/theme";
 import MyApp from "../../../pages/_app";
 
 const defaultTheme = "light";

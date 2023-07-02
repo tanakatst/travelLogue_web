@@ -4,7 +4,7 @@ import style from "../src/styles/scss/moduleCss/index.module.scss";
 import axios from "axios";
 import { NextPage } from "next/types";
 import IndexNav from "../src/components/Navigation/IndexNavbar";
-import RegisterModal from "../src/components/pagesComponent/index/RegisterModal";
+import RegisterModal from "../src/features/authentication/services/RegisterModal";
 import Example from "../src/components/pagesComponent/index/example";
 import { Box, Button, Container, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Box>
-        <Box className={style.main} style={{ height: "100vh" }}>
+        <Box  style={{ backgroundColor:'blue',height: "100vh" }}>
           <IndexNav />
           <Box
             style={{

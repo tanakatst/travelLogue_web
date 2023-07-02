@@ -13,7 +13,7 @@ import {
   ToggleButton,
 } from "@mui/material";
 import React, { useState } from "react";
-import NavbarButton from "./NavbarLIst/NavbarButton";
+import NavbarButton from "./components/NavbarButton";
 import {
   Home,
   Logout,
