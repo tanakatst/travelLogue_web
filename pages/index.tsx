@@ -4,10 +4,8 @@ import style from "../src/styles/scss/moduleCss/index.module.scss";
 import axios from "axios";
 import { NextPage } from "next/types";
 import IndexNav from "../src/components/Navigation/IndexNavbar";
-import RegisterModal from "../src/features/authentication/services/RegisterModal";
 import Example from "../src/components/pagesComponent/index/example";
-import { Box, Button, Container, Stack } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
@@ -16,7 +14,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Box>
-        <Box  style={{ backgroundColor:'blue',height: "100vh" }}>
+        <Box style={{ backgroundColor: "blue", height: "100vh" }}>
           <IndexNav />
           <Box
             style={{
@@ -55,7 +53,7 @@ const Home: NextPage = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "bgColor.blue", color:'textColor.' }}
+                  sx={{ backgroundColor: "bgColor.blue", color: "textColor." }}
                   onClick={() => router.push("/register")}
                 >
                   新規登録
@@ -73,7 +71,7 @@ const Home: NextPage = () => {
               height="40vh"
               sx={{
                 background: "rgba(74,112,165,1) !important",
-                borderRadius:8,
+                borderRadius: 8,
                 zIndex: 1,
               }}
             >
