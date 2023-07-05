@@ -2,6 +2,7 @@
     "name": "travellogue_front",
     "version": "0.1.0",
     "private": true,
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -9,14 +10,13 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@emotion/react": "^11.10.5",
-        "@emotion/styled": "^11.10.5",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
         "@fontsource/public-sans": "^4.5.11",
         "@google-cloud/storage": "^6.6.0",
         "@mui/icons-material": "^5.10.9",
-        "@mui/joy": "^5.0.0-alpha.60",
         "@mui/lab": "^5.0.0-alpha.105",
-        "@mui/material": "^5.10.10",
+        "@mui/material": "^5.13.6",
         "@mui/x-date-pickers": "^6.2.0",
         "@react-google-maps/api": "^2.16.0",
         "@react-spring/web": "^9.5.5",
