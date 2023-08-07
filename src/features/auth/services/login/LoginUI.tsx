@@ -9,12 +9,14 @@ const LoginUI = ({ isSmallScreen }: { isSmallScreen: boolean }) => {
       <Box
         sx={{
           height: "100vh",
-          width: isSmallScreen? "100%": "55%",
+          width: isSmallScreen ? "100%" : "55%",
           position: isSmallScreen ? "absolute" : "relative",
+          display: "flex",
+          flexDirection: "column",
           zIndex: 2,
         }}
       >
-        <Stack justifyContent="center" sx={{ height: "80px",px:3 }}>
+        <Stack justifyContent="center" sx={{ height: "80px", px: 3 }}>
           <Typography variant="h5">TravelLogue</Typography>
         </Stack>
         <AuthenticateComponent />

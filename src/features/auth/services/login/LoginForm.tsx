@@ -18,6 +18,7 @@ import AuthenticateTextFieldMolecule from "../../components/AuthenticateMolecule
 import { ContainedSubmitButtonAtom } from "../../../../components/atoms/button";
 import { LoginParams } from "../../types/Authenticate";
 import { useLogin } from "../../../../queries/AuthQuery";
+import { pt } from "date-fns/locale";
 
 const validationRules = {
   email: {
@@ -69,16 +70,26 @@ const AuthenticateComponent = () => {
   };
 
   return (
-    <Box sx={{ height: "calc(100% - 300px)" }}>
+    <Box
+      sx={{
+        height: "calc(100% - 80px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+      }}
+    >
       <Box
         sx={{
-          my: 8,
-          mx: 4,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          width: "100%",
+          height: "90%",
+          px: 4,
         }}
       >
+        <Box></Box>
         <Typography
           component="h1"
           variant="h5"
@@ -94,7 +105,6 @@ const AuthenticateComponent = () => {
             display: "flex",
             flexDirection: "column",
             width: "90%",
-            mt: 1,
           }}
         >
           <AuthenticateTextFieldMolecule
@@ -130,54 +140,53 @@ const AuthenticateComponent = () => {
 
             <Link href="register">パスワードをお忘れの方</Link>
           </Stack>
-          <ContainedSubmitButtonAtom
-            fullWidth
-            label="ログイン"
-            sx={{
-              width: "80%",
-              margin: "auto",
-              mt: "40px",
-              mb: 2,
-              fontSize: "1.2rem",
-              fontWeight: "bold",
-              backgroundColor: "prime.60",
-              "&:hover": {
-                backgroundColor: "prime.70",
-              },
-            }}
-          />
-          <ContainedSubmitButtonAtom
-            fullWidth
-            label="まだアカウントを持っていない方はこちら"
-            sx={{
-              width: "80%",
-              margin: "auto",
-              mt: "8px",
-              mb: 2,
-              fontSize: "1.2rem",
-              fontWeight: "bold",
-              backgroundColor: "second.60",
-              "&:hover": {
-                backgroundColor: "second.80",
-              },
-            }}
-          />
-          <ContainedSubmitButtonAtom
-            fullWidth
-            label="googleアカウントでログイン"
-            sx={{
-              width: "80%",
-              margin: "auto",
-              mt: "8px",
-              mb: 2,
-              color: "gray",
-              fontSize: "1.2rem",
-              backgroundColor: "whitesmoke",
-              "&:hover": {
+          <Stack direction="column" justifyContent="space-between" pt={8}>
+            <ContainedSubmitButtonAtom
+              fullWidth
+              label="ログイン"
+              sx={{
+                height: "30%",
+                width: "80%",
+                margin: "auto",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+                backgroundColor: "prime.60",
+                "&:hover": {
+                  backgroundColor: "prime.70",
+                },
+              }}
+            />
+            <ContainedSubmitButtonAtom
+              fullWidth
+              label="まだアカウントを持っていない方はこちら"
+              sx={{
+                height: "30%",
+                width: "80%",
+                margin: "auto",
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+                backgroundColor: "second.60",
+                "&:hover": {
+                  backgroundColor: "second.80",
+                },
+              }}
+            />
+            <ContainedSubmitButtonAtom
+              fullWidth
+              label="googleアカウントでログイン"
+              sx={{
+                height: "30%",
+                width: "80%",
+                margin: "auto",
+                color: "gray",
+                fontSize: "1.2rem",
                 backgroundColor: "whitesmoke",
-              },
-            }}
-          />
+                "&:hover": {
+                  backgroundColor: "whitesmoke",
+                },
+              }}
+            />
+          </Stack>
         </Box>
       </Box>
     </Box>
