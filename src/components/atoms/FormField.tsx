@@ -8,7 +8,7 @@ import { LoginParams } from "../../features/auth/types/Authenticate";
 type FormField = {
   required: boolean;
   name: string;
-  label: string;
+  label: string | undefined;
   placeholder: string | undefined;
   rule: Object;
   fullWidth?: boolean;
@@ -34,7 +34,7 @@ const FormField = ({
       render={({ field, fieldState }) => {
         return (
           <TextField
-            margin="normal"
+            margin="dense"
             sx={{
               "& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root ": {
                 borderRadius: "20px",
@@ -44,7 +44,7 @@ const FormField = ({
             required={required}
             fullWidth={fullWidth}
             id={name}
-            label={label}
+          
             placeholder={placeholder}
             autoFocus
             {...field}

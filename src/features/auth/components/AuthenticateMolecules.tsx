@@ -12,6 +12,7 @@ type AuthenticateMoleculeProps = {
   sx?: SxProps<Theme>;
   rule: Object;
   //   labelName: string | undefined
+  labelSx?: SxProps<Theme>;
   py?: number;
   hasLabel: boolean;
   control: any;
@@ -25,6 +26,7 @@ const AuthenticateTextFieldMolecule = ({
   fullWidth,
   sx,
   hasLabel,
+  labelSx,
   rule,
   py,
   control,
@@ -32,8 +34,9 @@ const AuthenticateTextFieldMolecule = ({
   return (
     <>
       <Box sx={{ py: `${py}px` }}>
-        <FormLabel>{label}</FormLabel>
+        {hasLabel && <FormLabel sx={{ mb: "3px" }}>{label}</FormLabel>}
         <FormField
+          sx={sx}
           name={name}
           control={control}
           fullWidth={fullWidth}
