@@ -8,3 +8,8 @@ type AuthenticateTextField = {
   fullWidth?: boolean;
   sx?: SxProps<Theme>;
 };
+
+export type LoginParams = {
+  email: string;
+  password: string;
+};
